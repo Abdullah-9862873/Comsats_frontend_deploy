@@ -26,6 +26,7 @@ import {
 
 // API configuration
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5005/api';
+const FILE_BASE_URL = import.meta.env.VITE_API_BASE_URL ? import.meta.env.VITE_API_BASE_URL.replace('/api', '') : 'http://localhost:5005';
 
 // Helper function to get auth token with better error handling
 const getAuthToken = () => {
@@ -403,7 +404,7 @@ const CompanyProfileTab = ({ onProfileUpdate }) => {
         <div className="relative h-32 md:h-40 bg-gradient-to-br from-[#003366] via-[#00509E] to-[#003366]">
           {profile.bannerImage?.path && (
             <img
-              src={`http://localhost:5005/${profile.bannerImage.path}`}
+              src={`${FILE_BASE_URL}/${profile.bannerImage.path}`}
               alt="Company Banner"
               className="w-full h-full object-cover"
             />
@@ -440,7 +441,7 @@ const CompanyProfileTab = ({ onProfileUpdate }) => {
               <div className="w-20 h-20 lg:w-24 lg:h-24 bg-white rounded-xl border-2 border-white overflow-hidden group">
                 {profile.profilePicture?.path ? (
                   <img
-                    src={`http://localhost:5005/${profile.profilePicture.path}`}
+                    src={`${FILE_BASE_URL}/${profile.profilePicture.path}`}
                     alt="Company Logo"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />

@@ -8,6 +8,9 @@ import { toast } from 'react-hot-toast';
 import { offerLetterAPI } from '../../../services/api';
 import OfferLetterPDF from '../../shared/OfferLetterPDF';
 
+// API configuration
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5005/api';
+
 const OfferLetterModal = ({ 
   isOpen, 
   onClose, 
@@ -35,7 +38,7 @@ const OfferLetterModal = ({
       setFetchingCompany(true);
       const token = localStorage.getItem('token') || JSON.parse(localStorage.getItem('user'))?.token;
       
-      const response = await fetch('http://localhost:5005/api/company-profile', {
+      const response = await fetch(`${API_BASE_URL}/company-profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }

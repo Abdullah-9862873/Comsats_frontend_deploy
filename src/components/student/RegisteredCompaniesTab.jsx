@@ -28,6 +28,10 @@ import {
 } from 'lucide-react';
 import Modal from '../../ui/Modal';
 
+// API configuration
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5005/api';
+const FILE_BASE_URL = import.meta.env.VITE_API_BASE_URL ? import.meta.env.VITE_API_BASE_URL.replace('/api', '') : 'http://localhost:5005';
+
 const RegisteredCompaniesTab = () => {
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -218,7 +222,7 @@ const RegisteredCompaniesTab = () => {
       <div className="relative h-28 bg-gradient-to-br from-[#003366] via-[#00509E] to-[#003366] group-hover:from-[#00509E] group-hover:to-[#003366] transition-all duration-300">
         {company.bannerImage ? (
           <img 
-            src={`http://localhost:5005/${company.bannerImage.path}`}
+            src={`${FILE_BASE_URL}/${company.bannerImage.path}`}
             alt={`${company.companyName} banner`}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
           />
@@ -242,7 +246,7 @@ const RegisteredCompaniesTab = () => {
         <div className="absolute -bottom-6 left-4">
           {company.logoImage ? (
             <img 
-              src={`http://localhost:5005/${company.logoImage.path}`}
+              src={`${FILE_BASE_URL}/${company.logoImage.path}`}
               alt={`${company.companyName} logo`}
               className="w-12 h-12 rounded-lg border-2 border-white object-cover bg-white shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300"
             />
@@ -397,7 +401,7 @@ const RegisteredCompaniesTab = () => {
             <div className="h-40 bg-gradient-to-r from-[#003366] via-[#00509E] to-[#003366] relative">
               {selectedCompany.bannerImage ? (
                 <img 
-                  src={`http://localhost:5005/${selectedCompany.bannerImage.path}`}
+                  src={`${FILE_BASE_URL}/${selectedCompany.bannerImage.path}`}
                   alt={`${selectedCompany.companyName} banner`}
                   className="w-full h-full object-cover"
                 />
@@ -435,7 +439,7 @@ const RegisteredCompaniesTab = () => {
                 <div className="flex-shrink-0">
                   {selectedCompany.logoImage ? (
                     <img 
-                      src={`http://localhost:5005/${selectedCompany.logoImage.path}`}
+                      src={`${FILE_BASE_URL}/${selectedCompany.logoImage.path}`}
                       alt={`${selectedCompany.companyName} logo`}
                       className="w-16 h-16 rounded-lg border-2 border-white object-cover bg-white shadow-md"
                     />
